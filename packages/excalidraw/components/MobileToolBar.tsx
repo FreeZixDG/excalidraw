@@ -205,6 +205,7 @@ export const MobileToolBar = ({
         onChange={onHandToolToggle}
         title={t("toolBar.hand")}
         isMobile
+        activateOnPointerDown={app.state.activateToolbarOnPointerDown}
       />
 
       {/* Selection Tool */}
@@ -237,7 +238,7 @@ export const MobileToolBar = ({
           active: activeTool.type === "freedraw",
         })}
         type="radio"
-        activateOnPointerDown
+        activateOnPointerDown={app.state.activateToolbarOnPointerDown}
         icon={FreedrawIcon}
         checked={activeTool.type === "freedraw"}
         name="editor-current-shape"
@@ -253,7 +254,7 @@ export const MobileToolBar = ({
           active: activeTool.type === "eraser",
         })}
         type="radio"
-        activateOnPointerDown
+        activateOnPointerDown={app.state.activateToolbarOnPointerDown}
         icon={EraserIcon}
         checked={activeTool.type === "eraser"}
         name="editor-current-shape"
@@ -334,7 +335,7 @@ export const MobileToolBar = ({
             active: activeTool.type === "text",
           })}
           type="radio"
-          activateOnPointerDown
+          activateOnPointerDown={app.state.activateToolbarOnPointerDown}
           icon={TextIcon}
           checked={activeTool.type === "text"}
           name="editor-current-shape"
@@ -352,7 +353,7 @@ export const MobileToolBar = ({
             active: activeTool.type === "image",
           })}
           type="radio"
-          activateOnPointerDown
+          activateOnPointerDown={app.state.activateToolbarOnPointerDown}
           icon={ImageIcon}
           checked={activeTool.type === "image"}
           name="editor-current-shape"
@@ -368,7 +369,7 @@ export const MobileToolBar = ({
         <ToolButton
           className={clsx({ active: frameToolSelected })}
           type="radio"
-          activateOnPointerDown
+          activateOnPointerDown={app.state.activateToolbarOnPointerDown}
           icon={frameToolIcon}
           checked={frameToolSelected}
           name="editor-current-shape"

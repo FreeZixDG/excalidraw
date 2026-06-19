@@ -16,6 +16,7 @@ import {
   actionToggleSearchMenu,
   actionToggleStats,
   actionToggleTheme,
+  actionToggleToolbarPointerDown,
   actionToggleZenMode,
 } from "../../actions";
 import { actionToggleViewMode } from "../../actions/actionToggleViewMode";
@@ -525,6 +526,23 @@ const PreferencesToggleMidpointSnappingItem = () => {
   );
 };
 
+const PreferencesToggleToolbarPointerDownItem = () => {
+  const { t } = useI18n();
+  const actionManager = useExcalidrawActionManager();
+  const appState = useUIAppState();
+  return (
+    <DropdownMenuItemCheckbox
+      checked={appState.activateToolbarOnPointerDown}
+      onSelect={(event) => {
+        actionManager.executeAction(actionToggleToolbarPointerDown);
+        event.preventDefault();
+      }}
+    >
+      {t("labels.toolbarPointerDown")}
+    </DropdownMenuItemCheckbox>
+  );
+};
+
 export const PreferencesToggleGridModeItem = () => {
   const { t } = useI18n();
   const actionManager = useExcalidrawActionManager();
@@ -623,6 +641,7 @@ export const Preferences = ({
             <PreferencesToggleElementPropertiesItem />
             <PreferencesToggleArrowBindingItem />
             <PreferencesToggleMidpointSnappingItem />
+            <PreferencesToggleToolbarPointerDownItem />
           </>
         )}
         {additionalItems}
@@ -636,6 +655,7 @@ Preferences.BoxSelectionMode = PreferencesBoxSelectionModeItem;
 Preferences.ToggleSnapMode = PreferencesToggleSnapModeItem;
 Preferences.ToggleArrowBinding = PreferencesToggleArrowBindingItem;
 Preferences.ToggleMidpointSnapping = PreferencesToggleMidpointSnappingItem;
+Preferences.ToggleToolbarPointerDown = PreferencesToggleToolbarPointerDownItem;
 Preferences.ToggleGridMode = PreferencesToggleGridModeItem;
 Preferences.ToggleZenMode = PreferencesToggleZenModeItem;
 Preferences.ToggleViewMode = PreferencesToggleViewModeItem;

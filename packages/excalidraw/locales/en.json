@@ -189,7 +189,8 @@
     "boxSelectionContain": "Wrap",
     "boxSelectionOverlap": "Overlap",
     "arrowBinding": "Arrow binding",
-    "midpointSnapping": "Snap to midpoints"
+    "midpointSnapping": "Snap to midpoints",
+    "toolbarPointerDown": "Activate toolbar on pointer down"
   },
   "elementLink": {
     "title": "Link to object",

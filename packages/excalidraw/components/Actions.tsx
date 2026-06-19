@@ -1143,7 +1143,7 @@ export const ShapesSwitcher = ({
               className={clsx("Shape", { fillable })}
               key={value}
               type="radio"
-              activateOnPointerDown
+              activateOnPointerDown={app.state.activateToolbarOnPointerDown}
               icon={icon}
               checked={activeTool.type === value}
               name="editor-current-shape"

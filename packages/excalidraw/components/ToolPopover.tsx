@@ -102,7 +102,7 @@ export const ToolPopover = ({
             })}
             key={type}
             type="radio"
-            activateOnPointerDown
+            activateOnPointerDown={app.state.activateToolbarOnPointerDown}
             icon={icon}
             checked={currentType === type}
             name={`${namePrefix}-option`}

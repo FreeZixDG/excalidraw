@@ -46,6 +46,25 @@ describe("Test dragCreate", () => {
     expect(h.state.activeTool.type).toBe("rectangle");
   });
 
+  it("does not select toolbar tool on pointer down when disabled", async () => {
+    const { getByToolName } = await render(
+      <Excalidraw
+        initialData={{ appState: { activateToolbarOnPointerDown: false } }}
+      />,
+    );
+    const tool = getByToolName("rectangle");
+
+    expect(h.state.activeTool.type).toBe("selection");
+
+    fireEvent.pointerDown(tool, { pointerType: "mouse", button: 0 });
+
+    expect(h.state.activeTool.type).toBe("selection");
+
+    fireEvent.click(tool);
+
+    expect(h.state.activeTool.type).toBe("rectangle");
+  });
+
   describe("add element to the scene when pointer dragging long enough", () => {
     it("rectangle", async () => {
       const { getByToolName, container } = await render(<Excalidraw />);

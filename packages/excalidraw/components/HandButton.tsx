@@ -13,6 +13,7 @@ type LockIconProps = {
   checked: boolean;
   onChange?(): void;
   isMobile?: boolean;
+  activateOnPointerDown?: boolean;
 };
 
 export const HandButton = (props: LockIconProps) => {
@@ -20,7 +21,7 @@ export const HandButton = (props: LockIconProps) => {
     <ToolButton
       className={clsx("Shape", { fillable: false, active: props.checked })}
       type="radio"
-      activateOnPointerDown
+      activateOnPointerDown={props.activateOnPointerDown}
       icon={handIcon}
       name="editor-current-shape"
       checked={props.checked}

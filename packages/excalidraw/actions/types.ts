@@ -61,6 +61,7 @@ export type ActionName =
   | "objectsSnapMode"
   | "arrowBinding"
   | "midpointSnapping"
+  | "toolbarPointerDown"
   | "stats"
   | "changeStrokeColor"
   | "changeBackgroundColor"

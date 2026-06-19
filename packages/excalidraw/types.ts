@@ -313,6 +313,8 @@ export interface AppState {
   boxSelectionMode: BoxSelectionMode;
   /** user arrow binding preference */
   bindingPreference: "enabled" | "disabled";
+  /** user preference to activate toolbar tools on pointer down instead of change/click */
+  activateToolbarOnPointerDown: boolean;
   /** user preference whether arrow snap to midpoints while binding */
   isMidpointSnappingEnabled: boolean;
   /**
