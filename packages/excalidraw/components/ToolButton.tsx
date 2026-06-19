@@ -56,8 +56,9 @@ type ToolButtonProps =
   | (ToolButtonBaseProps & {
       type: "radio";
       checked: boolean;
+      activateOnPointerDown?: boolean;
       onChange?(data: { pointerType: PointerType | null }): void;
-      onPointerDown?(data: { pointerType: PointerType }): void;
+      onPointerDown?(data: { pointerType: PointerType | null }): void;
     });
 
 export const ToolButton = React.forwardRef(
@@ -108,6 +109,7 @@ export const ToolButton = React.forwardRef(
     }, []);
 
     const lastPointerTypeRef = useRef<PointerType | null>(null);
+    const ignoreNextChangeRef = useRef(false);
 
     if (
       props.type === "button" ||
@@ -172,12 +174,24 @@ export const ToolButton = React.forwardRef(
         className={clsx("ToolIcon", className)}
         title={props.title}
         onPointerDown={(event) => {
-          lastPointerTypeRef.current = event.pointerType || null;
-          props.onPointerDown?.({ pointerType: event.pointerType || null });
+          const pointerType = (event.pointerType || null) as PointerType | null;
+          lastPointerTypeRef.current = pointerType;
+
+          props.onPointerDown?.({ pointerType });
+
+          if (
+            props.activateOnPointerDown &&
+            !props.checked &&
+            event.button === 0
+          ) {
+            ignoreNextChangeRef.current = true;
+            props.onChange?.({ pointerType });
+          }
         }}
         onPointerUp={() => {
           requestAnimationFrame(() => {
             lastPointerTypeRef.current = null;
+            ignoreNextChangeRef.current = false;
           });
         }}
       >
@@ -190,6 +204,10 @@ export const ToolButton = React.forwardRef(
           data-testid={props["data-testid"]}
           id={`${excalId}-${props.id}`}
           onChange={() => {
+            if (ignoreNextChangeRef.current) {
+              ignoreNextChangeRef.current = false;
+              return;
+            }
             props.onChange?.({ pointerType: lastPointerTypeRef.current });
           }}
           checked={props.checked}

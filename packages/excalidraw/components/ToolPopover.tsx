@@ -102,6 +102,7 @@ export const ToolPopover = ({
             })}
             key={type}
             type="radio"
+            activateOnPointerDown
             icon={icon}
             checked={currentType === type}
             name={`${namePrefix}-option`}

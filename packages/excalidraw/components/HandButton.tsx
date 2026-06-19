@@ -20,6 +20,7 @@ export const HandButton = (props: LockIconProps) => {
     <ToolButton
       className={clsx("Shape", { fillable: false, active: props.checked })}
       type="radio"
+      activateOnPointerDown
       icon={handIcon}
       name="editor-current-shape"
       checked={props.checked}
